@@ -18,12 +18,13 @@ export const renderer = createRenderer<Container, Container>({
     }
     return element;
   },
-  patchProp(el, key, prevValue, nextValue) {
+  patchProp(el: any, key, prevValue, nextValue) {
     switch (key) {
       case "texture":
         (el as Sprite).texture = Texture.from(nextValue);
         break;
       default:
+        el[key] = nextValue;
         break;
     }
   },
