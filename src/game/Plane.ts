@@ -1,3 +1,5 @@
+import Bullet from "./Bullet";
+
 export interface Plane {
   x: number
   y: number
@@ -6,6 +8,7 @@ export interface Plane {
   moveUp: () => void
   moveLeft: () => void
   moveRight: () => void
+  attack: () => void
 }
 
 const defaultOptions = {
@@ -21,9 +24,16 @@ const defaultOptions = {
  * @param {*} [options={}] 额外参数
  * @returns {Plane}
  */
-export function setupPlane(plane: any, options = {}): Plane {
+export function setupPlane(plane: any, options = {}, bullets: Bullet[] = []): Plane {
   // init
+  plane.bullets = bullets;
   Object.assign(plane, defaultOptions, options);
+
+  plane.attack = () => {
+    // 创建子弹
+    const bullet = new Bullet();
+    bullets.push(bullet);
+  };
 
   plane.moveDown = function moveDown() {
     plane.y += plane.speed;

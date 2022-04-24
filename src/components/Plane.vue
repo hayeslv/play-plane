@@ -11,6 +11,10 @@ const props = defineProps({
 });
 
 window.addEventListener("keydown", e => {
+  if (e.code === "Space") {
+    props.plane.attack();
+  }
+
   switch (e.code) {
     case "ArrowDown":
       props.plane.moveDown();

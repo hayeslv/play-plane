@@ -8,7 +8,7 @@ import { reactive } from "vue";
 // const bullets;
 const { plane, bullets } = initGame(
   reactive({}),
-  reactive([{ x: 0, y: 0 }, { x: 50, y: 50 }]),
+  reactive([]),
 );
 </script>
 

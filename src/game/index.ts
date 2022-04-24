@@ -11,6 +11,6 @@ export const game = new Application({
 document.body.appendChild(game.view);
 
 export function initGame(_plane: any, bullets: any) {
-  const plane = setupPlane(_plane, {});
+  const plane = setupPlane(_plane, {}, bullets);
   return { plane, bullets };
 }

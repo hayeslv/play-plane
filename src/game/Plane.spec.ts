@@ -36,4 +36,14 @@ describe("Plane", () => {
       expect(plane.x).toBe(plane.speed);
     });
   });
+
+  describe("攻击", () => {
+    it("attack", () => {
+      const bullets: any = [];
+      const plane = setupPlane({}, {}, bullets);
+      plane.attack();
+
+      expect(bullets.length).toBe(1);
+    });
+  });
 });
