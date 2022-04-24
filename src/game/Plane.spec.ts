@@ -63,5 +63,14 @@ describe("Plane", () => {
 
       expect(bullets[0].y).not.toBe(0);
     });
+    it("子弹超出边界后，将其移除", () => {
+      const bullets: Bullet[] = [];
+      const plane = setupPlane({}, bullets, { x: 0, y: 0 });
+      plane.attack(); // 攻击会产生一个子弹
+
+      plane.run(); // 子弹开始移动
+
+      expect(bullets.length).toBe(0);
+    });
   });
 });

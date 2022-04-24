@@ -69,6 +69,13 @@ function initAttack(plane: Plane, bullets: Bullet[]) {
     const bullet = new Bullet();
     bullet.x = plane.x + 25; // 调整子弹的位置
     bullet.y = plane.y;
+    bullet.border = 100;
+
+    bullet.onDestory = () => {
+      const index = bullets.indexOf(bullet);
+      bullets.splice(index, 1);
+    };
+
     bullets.push(bullet);
   };
 }
