@@ -25,25 +25,22 @@ const defaultOptions = {
  * @param {*} [options={}] 额外参数
  * @returns {Plane}
  */
-export function setupPlane(plane: any, options = {}, bullets: Bullet[] = []): Plane {
+export function setupPlane(plane: any, bullets: Bullet[], options = {}): Plane {
   // init
   plane.bullets = bullets;
   Object.assign(plane, defaultOptions, options);
 
-  plane.attack = () => {
-    // 创建子弹
-    const bullet = new Bullet();
-    bullet.x = plane.x + 25;
-    bullet.y = plane.y;
-    bullets.push(bullet);
-  };
+  initAttack(plane, bullets);
 
-  plane.run = () => {
-    bullets.forEach(bullet => {
-      bullet.move();
-    });
-  };
+  initRun(plane, bullets);
 
+  initMove(plane);
+
+  return plane;
+}
+
+// 初始化飞机移动逻辑
+function initMove(plane: Plane) {
   plane.moveDown = function moveDown() {
     plane.y += plane.speed;
   };
@@ -56,6 +53,22 @@ export function setupPlane(plane: any, options = {}, bullets: Bullet[] = []): Pl
   plane.moveRight = function moveRight() {
     plane.x += plane.speed;
   };
-
-  return plane;
+}
+// 初始化子弹移动逻辑
+function initRun(plane: Plane, bullets: Bullet[]) {
+  plane.run = () => {
+    bullets.forEach(bullet => {
+      bullet.move();
+    });
+  };
+}
+// 初始化攻击逻辑
+function initAttack(plane: Plane, bullets: Bullet[]) {
+  plane.attack = () => {
+    // 创建子弹
+    const bullet = new Bullet();
+    bullet.x = plane.x + 25; // 调整子弹的位置
+    bullet.y = plane.y;
+    bullets.push(bullet);
+  };
 }

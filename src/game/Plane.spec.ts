@@ -8,29 +8,32 @@ describe("Plane", () => {
       x: 0,
       y: 0,
     };
+    function createPlane() {
+      return setupPlane({}, [], { ...defaultOptions });
+    }
     it("moveDown", () => {
-      const plane = setupPlane({}, { ...defaultOptions });
+      const plane = createPlane();
 
       plane.moveDown();
 
       expect(plane.y).toBe(plane.speed);
     });
     it("moveUp", () => {
-      const plane = setupPlane({}, { ...defaultOptions });
+      const plane = createPlane();
 
       plane.moveUp();
 
       expect(plane.y).toBe(-plane.speed);
     });
     it("moveLeft", () => {
-      const plane = setupPlane({}, { ...defaultOptions });
+      const plane = createPlane();
 
       plane.moveLeft();
 
       expect(plane.x).toBe(-plane.speed);
     });
     it("moveRight", () => {
-      const plane = setupPlane({}, { ...defaultOptions });
+      const plane = createPlane();
 
       plane.moveRight();
 
@@ -41,7 +44,7 @@ describe("Plane", () => {
   describe("攻击", () => {
     it("attack", () => {
       const bullets: any = [];
-      const plane = setupPlane({}, {}, bullets);
+      const plane = setupPlane({}, bullets);
       plane.attack();
 
       expect(bullets.length).toBe(1);
@@ -54,7 +57,7 @@ describe("Plane", () => {
       bullet.y = 0;
 
       const bullets = [bullet];
-      const plane = setupPlane({}, {}, bullets);
+      const plane = setupPlane({}, bullets);
 
       plane.run();
 

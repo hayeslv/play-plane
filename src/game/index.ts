@@ -12,7 +12,7 @@ export const game = new Application({
 document.body.appendChild(game.view);
 
 export function initGame(_plane: any, bullets: any) {
-  const plane = setupPlane(_plane, {}, bullets);
+  const plane = setupPlane(_plane, bullets);
 
   mainTicker(plane);
 

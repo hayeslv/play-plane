@@ -4,6 +4,7 @@ describe("Bullet", () => {
   it("move", () => {
     const bullet = new Bullet();
     bullet.y = 1;
+    bullet.speed = 1;
 
     bullet.move();
 
