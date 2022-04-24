@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import Bullet from "./Bullet";
 import { setupPlane } from "./Plane";
 describe("Plane", () => {
   describe("move", () => {
@@ -44,6 +45,20 @@ describe("Plane", () => {
       plane.attack();
 
       expect(bullets.length).toBe(1);
+    });
+  });
+
+  describe("run", () => {
+    it("移动所有的子弹", () => {
+      const bullet = new Bullet();
+      bullet.y = 0;
+
+      const bullets = [bullet];
+      const plane = setupPlane({}, {}, bullets);
+
+      plane.run();
+
+      expect(bullets[0].y).not.toBe(0);
     });
   });
 });

@@ -4,4 +4,8 @@ export default class Bullet {
   constructor() {
 
   }
+
+  move() {
+    this.y -= 1;
+  }
 }

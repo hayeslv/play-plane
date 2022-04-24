@@ -9,6 +9,7 @@ export interface Plane {
   moveLeft: () => void
   moveRight: () => void
   attack: () => void
+  run: () => void
 }
 
 const defaultOptions = {
@@ -32,7 +33,15 @@ export function setupPlane(plane: any, options = {}, bullets: Bullet[] = []): Pl
   plane.attack = () => {
     // 创建子弹
     const bullet = new Bullet();
+    bullet.x = plane.x + 25;
+    bullet.y = plane.y;
     bullets.push(bullet);
+  };
+
+  plane.run = () => {
+    bullets.forEach(bullet => {
+      bullet.move();
+    });
   };
 
   plane.moveDown = function moveDown() {
